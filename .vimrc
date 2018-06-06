@@ -66,6 +66,8 @@ Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 Plug 'tpope/vim-fugitive'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'kien/rainbow_parentheses.vim'
+Plug 'scrooloose/vim-slumlord'
+Plug 'aklt/plantuml-syntax'
 
 call plug#end()
 
