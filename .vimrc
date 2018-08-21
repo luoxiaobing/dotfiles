@@ -1001,3 +1001,14 @@ let g:ycm_filetype_whitelist = {
 			\ "zsh":1,
 			\ "zimbu":1,
 			\ }
+
+map <F8> :call FormatCode()<CR>
+        func! FormatCode()
+                exec "w"
+                if &filetype == 'C' || &filetype == 'h'
+                        exec "!astyle --options=${HOME}/.astylerc %"
+                elseif &filetype == 'cpp'
+                        exec "!astyle --options=${HOME}/.astylerc %"
+                return
+                endif
+endfunc
