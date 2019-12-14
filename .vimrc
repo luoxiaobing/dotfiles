@@ -57,11 +57,6 @@ Plug 'junegunn/vim-easy-align'
 
 Plug 'w0rp/ale'
 Plug 'mhinz/vim-signify'
-" Plug 'kana/vim-textobj-user'
-" Plug 'kana/vim-textobj-indent'
-" Plug 'kana/vim-textobj-syntax'
-" Plug 'kana/vim-textobj-function', { 'for':['c', 'cpp', 'vim', 'java'] }
-" Plug 'sgur/vim-textobj-parameter'
 Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 Plug 'tpope/vim-fugitive'
 Plug 'ctrlpvim/ctrlp.vim'
@@ -133,9 +128,9 @@ set modelines=0
 
 " Tabstops are 2 spaces
 set smarttab
-set tabstop=8
-set shiftwidth=8
-set softtabstop=8
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
 " set expandtab         " make TAB as space
 set shiftround
 set autoindent
@@ -217,7 +212,7 @@ set title
 set dictionary=/usr/share/dict/words
 
 " Make pasting done without any indentation break.
-set pastetoggle=<F3>
+set pastetoggle=<F6>
 
 " Look for tag def in a "tags" file in the dir of the current file, then for
 " that same file in every folder above the folder of the current file, until the root.
@@ -559,9 +554,9 @@ set sidescrolloff=7
 set sidescroll=1
 
 " explorer mappings
+nnoremap <F2> :NERDTreeToggle<cr>
+nnoremap <F3> :TagbarToggle<cr>
 nnoremap <F4> :MBEToggle<cr>
-" nnoremap <f2> :NERDTreeToggle<cr>
-" nnoremap <f3> :TagbarToggle<cr>
 
 "map Q to something useful
 noremap Q gq
@@ -589,15 +584,8 @@ let NERDTreeWinPos = "right"
 let NERDTreeDirArrows=0
 let NERDTreeQuitOnOpen=1
 let NERDTreeShowLineNumbers=1
+let g:NERDSpaceDelims = 1
 " }}
-
-
-
-" taglist
-nnoremap <silent> <F9> :TlistToggle<CR>
-let Tlist_WinWidth = 60
-let Tlist_Exit_OnlyWindow = 1
-let Tlist_Display_Prototype = 1
 
 
 " Mini Buffer some settings."
@@ -633,14 +621,14 @@ let g:indentLine_char = '¦'
 
 " Single Compile settings
 noremap <silent> <F7> :SCCompileAF -Wall -lpthread -ldl<cr>
-noremap <silent> <F5> :SCCompileRun<cr>
+noremap <silent> <F8> :SCCompileRun<cr>
 let g:SingleCompile_usequickfix = 1
 let g:SingleCompile_showquickfixiferror = 1
 let g:SingleCompile_silentcompileifshowquickfix = 1
 
 " Trigger configuration. Do not use <tab> if you use
 " https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<F8>"
+let g:UltiSnipsExpandTrigger="<F9>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " let g:UltiSnipsExpandTrigger = "<tab>"
@@ -649,7 +637,7 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 let g:syntastic_check_on_open = 1
 let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_error_symbol = '✗'
+let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '⚠'
 let g:syntastic_auto_jump = 1
 let g:syntastic_auto_loc_list = 1
@@ -698,22 +686,18 @@ let g:SuperTabLongestHighlight = 1
 let g:SuperTabLongestEnhanced = 1
 
 
-" let g:DoxygenToolkit_commentType = "C++"
+let g:DoxygenToolkit_commentType = "C++"
 let g:DoxygenToolkit_briefTag_pre="@brief  "
 let g:DoxygenToolkit_paramTag_pre="@param  "
 let g:DoxygenToolkit_returnTag="@return  "
-" let g:DoxygenToolkit_blockHeader="--------------------------------------------------------------------------"
-" let g:DoxygenToolkit_blockFooter="----------------------------------------------------------------------------"
-let g:DoxygenToolkit_authorName="Xiaobing Luo <luoxiaobing@hikvision.com.cn>"
-
-
-nmap <F10> :TagbarToggle<CR>
+let g:DoxygenToolkit_blockHeader="--------------------------------------------------------------------------"
+let g:DoxygenToolkit_blockFooter="----------------------------------------------------------------------------"
+let g:DoxygenToolkit_authorName="Xiaobing Luo <luoxiaobing0926@gmail.com>"
 
 
 let g:easytags_file = '~/.vim/.tags'
 
 
-let g:NERDSpaceDelims = 1
 
 map <F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q . ; cscope -Rbq <CR>
 
@@ -894,7 +878,7 @@ endfunction
 
 command! EchoPlain call EchoPlainCode()
 
-set runtimepath^=~/.vim/plugged/ctrlp.vim
+" set runtimepath^=~/.vim/plugged/ctrlp.vim
 
 " make powerline works
 " set rtp+=~/.vim/plugged/powerline/powerline/bindings/vim
@@ -935,14 +919,11 @@ nmap ga <Plug>(EasyAlign)
 
 " gutentags 搜索工程目录的标志，碰到这些文件/目录名就停止向上一级目录递归
 let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
- 
 " 所生成的数据文件的名称
 let g:gutentags_ctags_tagfile = '.tags'
- 
 " 将自动生成的 tags 文件全部放入 ~/data/.cache/tags 目录中，避免污染工程目录
 let s:vim_tags = expand('~/data/.cache/tags')
 let g:gutentags_cache_dir = s:vim_tags
- 
 " 配置 ctags 的参数
 let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
 let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
@@ -995,12 +976,13 @@ let g:ycm_semantic_triggers =  {
 
 let g:ycm_filetype_whitelist = { 
 			\ "c":1,
-			\ "cpp":1, 
+			\ "cpp":1,
 			\ "objc":1,
 			\ "sh":1,
 			\ "zsh":1,
 			\ "zimbu":1,
 			\ }
+let g:ycm_global_ycm_extra_conf='~/.vim/plugged/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
 
 map <F8> :call FormatCode()<CR>
         func! FormatCode()
