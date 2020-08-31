@@ -96,9 +96,9 @@ set relativenumber
 " ******************
 " for solarized colorscheme
 set t_Co=256
-set background=dark
-let g:onedark_termcolors=256
-colorscheme onedark
+set background=light
+let g:solarized_termcolors=256
+colorscheme solarized
 
 " Set the textwidth to be 80 chars
 set textwidth=80
